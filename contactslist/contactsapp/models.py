@@ -1,5 +1,9 @@
+from random import choices
 from django.db import models
+from django.contrib.auth.models import User
+from django.forms import IntegerField
 
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 
@@ -7,7 +11,9 @@ from django.db import models
 class Customer(models.Model):
     """A model associated with the User. Every Customer has its own list of Contacts (one-to-many relationship)"""
 
-    pass
+    user: models.OneToOneField = models.OneToOneField(
+        User, null=True, blank=True, on_delete=models.CASCADE
+    )
 
 
 class Contact(models.Model):
@@ -18,10 +24,18 @@ class Contact(models.Model):
         ("FRIENDS", "Friends"),
         ("RELATIVES", "Relatives"),
         ("COWORKERS", "Coworkers"),
-        ("BUSINESS", "Business"),
+        ("BUSINESS", "Business")
     ]
-    name: models.CharField = models.CharField(null=False)
-    phone: models.IntegerField = models.IntegerField(blank=False, null=True)
+    phone: IntegerField = IntegerField(
+        blank=False, null=True, unique=True
+    )
+    name: models.CharField = models.CharField(max_length=96, null=False)
+    email: models.CharField = models.CharField(
+        max_length=96, blank=True, null=False, unique=False
+    )
+    relationship: models.CharField = models.CharField(
+        max_length=48, choices=RELATIONSHIP_CHOICES
+    )
 
     def __str__(self) -> str:
         if self.name == "":
