@@ -33,7 +33,7 @@ class Contact(models.Model):
         max_length=96, blank=True, null=False, unique=False
     )
     relationship: models.CharField = models.CharField(
-        max_length=48, choices=RELATIONSHIP_CHOICES
+        max_length=48, blank=True, choices=RELATIONSHIP_CHOICES
     )
 
     def __str__(self) -> str:

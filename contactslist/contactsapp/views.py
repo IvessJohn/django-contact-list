@@ -4,20 +4,22 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 
 from .models import Customer, Contact
+from .filters import ContactFilter
 
 # Create your views here.
 def home(request):
+    """The main page's view, where the contact list is shown."""
     contacts = Contact.objects.all()
 
-    # SEARCH FORM HERE
-    #
-    #
+    contactFilter = ContactFilter(request.GET, queryset=contacts)
+    contacts = contactFilter.qs
 
-    context = {"contacts": contacts}
+    context = {"contacts": contacts, "contactFilter": contactFilter}
     return render(request, "contactsapp/home.html", context)
 
 
 def about(request):
+    """The About page's view. Just some info, nothing special."""
     return render(request, "contactsapp/about.html")
 
 
