@@ -1,7 +1,6 @@
 from random import choices
 from django.db import models
 from django.contrib.auth.models import User
-from django.forms import IntegerField
 
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -24,10 +23,10 @@ class Contact(models.Model):
         ("FRIENDS", "Friends"),
         ("RELATIVES", "Relatives"),
         ("COWORKERS", "Coworkers"),
-        ("BUSINESS", "Business")
+        ("BUSINESS", "Business"),
     ]
-    phone: IntegerField = IntegerField(
-        blank=False, null=True, unique=True
+    phone: PhoneNumberField = PhoneNumberField(
+        blank=False, null=False, unique=True
     )
     name: models.CharField = models.CharField(max_length=96, null=False)
     email: models.CharField = models.CharField(
