@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 
 from .models import Customer, Contact
+from .forms import ContactForm
 from .filters import ContactFilter
 
 # Create your views here.
@@ -23,9 +24,20 @@ def about(request):
     return render(request, "contactsapp/about.html")
 
 
-def contact_add(request, contact_id: int):
-    context = {}
-    return render(request, "contactsapp/contact_add.html", context)
+def contact_add(request):
+    """A view for adding a new contact."""
+
+    is_adding_a_contact: bool = True
+    contact_form: ContactForm = ContactForm()
+
+    if request.method == "POST":
+        contact_form = ContactForm(request.POST)
+        if contact_form.is_valid():
+            contact_form.save()
+            return redirect("/")
+
+    context = {"contact_form": contact_form, "is_adding_a_contact": is_adding_a_contact}
+    return render(request, "contactsapp/contact_edit.html", context)
 
 
 def contact_info(request, contact_id: int):
@@ -33,3 +45,20 @@ def contact_info(request, contact_id: int):
 
     context = {"contact": contact}
     return render(request, "contactsapp/contact_info.html", context)
+
+
+def contact_edit(request, contact_id: int):
+    """A view for editing an existing contact's information."""
+
+    is_adding_a_contact: bool = False
+    contact: Contact = Contact.objects.get(id=contact_id)
+    contact_form: ContactForm = ContactForm(instance=contact)
+
+    if request.method == "POST":
+        contact_form = ContactForm(request.POST, instance=contact)
+        if contact_form.is_valid():
+            contact_form.save()
+            return redirect("/")
+
+    context = {"contact_form": contact_form, "is_adding_a_contact": is_adding_a_contact}
+    return render(request, "contactsapp/contact_edit.html", context)
