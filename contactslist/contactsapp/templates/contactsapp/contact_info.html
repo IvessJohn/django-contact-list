@@ -2,6 +2,48 @@
 
 {% block content %}
 
+<div class="container">
+    <header class="hero">
+        <a href="{% url 'home' %}">
+            <i class="fas fa-chevron-circle-left back-btn"></i>
+        </a>
+        <div class="hero-info">
+            <h1 class="name">{{contact.name}}</h1>
+            <h3 class="relationship">{{contact.relationship}}</h1>
+        </div>
+    </header>
 
+    <section class="contact-info">
+
+        <p class="phone-number">{{contact.phone}}</p>
+
+        <div class="info-line">
+            <a><i class="fas fa-phone icon-gradient"></i></a>
+            <a><i class="fas fa-sms icon-gradient"></i></a>
+        </div>
+
+        
+
+        <div class="info-line">
+            <i class="fas fa-envelope icon-gradient"></i>
+            <p class="email">{{contact.email}}</p>
+        </div>
+
+        
+
+        <div class="info-line">
+            <i id="location" class="fas fa-map-marker-alt icon-gradient"></i>
+            <p class="address">{{contact.address}}</p>
+        </div>
+    </section>
+
+    <a href="{% url 'contact_edit' contact.id %}">
+        <section class="edit-contact">
+            <div class="edit-button">
+                <i class="fas fa-cog icon-gradient"></i>
+            </div>
+        </section>
+    </a>
+</div>
 
 {% endblock %}

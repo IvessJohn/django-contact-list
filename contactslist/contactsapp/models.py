@@ -35,6 +35,7 @@ class Contact(models.Model):
     relationship: models.CharField = models.CharField(
         max_length=48, blank=True, choices=RELATIONSHIP_CHOICES
     )
+    address: models.CharField = models.CharField(max_length=200, blank=True)
 
     def __str__(self) -> str:
         if self.name == "":

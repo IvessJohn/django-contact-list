@@ -15,17 +15,23 @@
 <section class="contacts-library">
     <ul class="contacts-list">
         {% for contact in contacts %}
-        <div class="contact-section">
-            <li class="list__item">
-                {{contact.name}}
-                {{contact.relationship}}
-            </li>
-
-            <li class="list__item">
-                <i class="fa-solid fa-phone-flip"></i>
-                <i class="fa-solid fa-ellipsis"></i>
-            </li>
-        </div>
+        <a href="{% url 'contact_info' contact.id %}">
+            <div class="contact-section">
+                <li class="list__item">
+                    {{contact.name}}
+                    {{contact.relationship}}
+                </li>
+    
+                <li class="list__item">
+                    <a href="">
+                        <i class="fa-solid fa-phone-flip"></i>
+                    </a>
+                    <a href="{% url 'contact_info' contact.id %}">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </a>
+                </li>
+            </div>
+        </a>
         {% endfor %}
     </ul>
 </section>
