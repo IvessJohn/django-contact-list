@@ -1,4 +1,4 @@
-{% extends 'contactsapp\main.html %}
+{% extends 'contactsapp/main.html' %}
 
 {% block content %}
 
@@ -11,9 +11,19 @@
 
 <section class="contacts-library">
     <ul class="contacts-list">
+        {% for contact in contacts %}
         <div class="contact-section">
-            
+            <li class="list__item">
+                {{contact.name}}
+                {{contact.relationship}}
+            </li>
+
+            <li class="list__item">
+                <i class="fa-solid fa-phone-flip"></i>
+                <i class="fa-solid fa-ellipsis"></i>
+            </li>
         </div>
+        {% endfor %}
     </ul>
 </section>
 

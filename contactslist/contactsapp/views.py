@@ -13,12 +13,21 @@ def home(request):
     #
     #
 
-    context = {'contacts': contacts}
-    return render(request, 'contactsapp/main.html', context)
+    context = {"contacts": contacts}
+    return render(request, "contactsapp/home.html", context)
+
 
 def about(request):
-    return render(request, 'contactsapp/about.html')
+    return render(request, "contactsapp/about.html")
+
+
+def contact_add(request, contact_id: int):
+    context = {}
+    return render(request, "contactsapp/contact_add.html", context)
+
 
 def contact_info(request, contact_id: int):
-    context = {}
-    return render(request, 'contactsapp/contact_info.html', context)
+    contact = Contact.objects.get(id=contact_id)
+
+    context = {"contact": contact}
+    return render(request, "contactsapp/contact_info.html", context)
