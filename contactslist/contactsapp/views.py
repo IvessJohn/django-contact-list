@@ -15,3 +15,10 @@ def home(request):
 
     context = {'contacts': contacts}
     return render(request, 'contactsapp/main.html', context)
+
+def about(request):
+    return render(request, 'contactsapp/about.html')
+
+def contact_info(request, contact_id: int):
+    context = {}
+    return render(request, 'contactsapp/contact_info.html', context)
