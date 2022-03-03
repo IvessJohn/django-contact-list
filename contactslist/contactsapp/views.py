@@ -4,11 +4,13 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
 from .models import Customer, Contact
 from .forms import ContactForm, RegisterForm
 from .filters import ContactFilter
+from .decorators import unauthenticated_user
 
 # Create your views here.
 def view_template(request):
@@ -16,6 +18,7 @@ def view_template(request):
     return render(request, "contactsapp/.html", context)
 
 
+@unauthenticated_user
 def register_view(request):
     register_form: RegisterForm = RegisterForm()
 
@@ -33,12 +36,13 @@ def register_view(request):
     return render(request, "contactsapp/auth_register.html", context)
 
 
+@unauthenticated_user
 def login_view(request):
     if request.method == "POST":
         _username: str = request.POST.get("username")
         _password: str = request.POST.get("password")
 
-        user: User = authenticate(request, username=_username, password=_password)
+        user: User = authenticate(request.POST, username=_username, password=_password)
 
         if user is not None:
             login(request, user)
@@ -49,10 +53,14 @@ def login_view(request):
     context = {}
     return render(request, "contactsapp/auth_login.html", context)
 
+
+@login_required(login_url="login")
 def logout_view(request):
     logout(request)
     return redirect("login")
 
+
+@login_required(login_url="login")
 def home(request):
     """The main page's view, where the contact list is shown."""
     contacts = Contact.objects.all()
@@ -64,11 +72,13 @@ def home(request):
     return render(request, "contactsapp/home.html", context)
 
 
+@login_required(login_url="login")
 def about(request):
     """The About page's view. Just some info, nothing special."""
     return render(request, "contactsapp/about.html")
 
 
+@login_required(login_url="login")
 def contact_add(request):
     """A view for adding a new contact."""
 
@@ -85,6 +95,7 @@ def contact_add(request):
     return render(request, "contactsapp/contact_edit.html", context)
 
 
+@login_required(login_url="login")
 def contact_info(request, contact_id: int):
     contact = Contact.objects.get(id=contact_id)
 
@@ -92,6 +103,7 @@ def contact_info(request, contact_id: int):
     return render(request, "contactsapp/contact_info.html", context)
 
 
+@login_required(login_url="login")
 def contact_edit(request, contact_id: int):
     """A view for editing an existing contact's information."""
 
