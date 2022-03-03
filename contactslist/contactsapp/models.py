@@ -1,6 +1,7 @@
 from random import choices
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -18,13 +19,13 @@ class Customer(models.Model):
 class Contact(models.Model):
     """A model with contact info. Every Contact is associated with only one Customer at a time."""
 
-    RELATIONSHIP_CHOICES = [
-        ("FAMILY", "Family"),
-        ("FRIENDS", "Friends"),
-        ("RELATIVES", "Relatives"),
-        ("COWORKERS", "Coworkers"),
-        ("BUSINESS", "Business"),
-    ]
+    class Relationship(models.TextChoices):
+        FAMILY = 'FAMILY', _('Family')
+        FRIENDS = "FRIENDS", _("Friends")
+        RELATIVES = "RELATIVES", _("Relatives")
+        COWORKERS = "COWORKERS", _("Coworkers")
+        BUSINESS = "BUSINESS", _("Business")
+    
     phone: PhoneNumberField = PhoneNumberField(
         blank=False, null=False, unique=True
     )
@@ -33,7 +34,7 @@ class Contact(models.Model):
         max_length=96, blank=True, null=False, unique=False
     )
     relationship: models.CharField = models.CharField(
-        max_length=48, blank=True, choices=RELATIONSHIP_CHOICES
+        max_length=48, blank=True, choices=Relationship.choices
     )
     address: models.CharField = models.CharField(max_length=200, blank=True)
 

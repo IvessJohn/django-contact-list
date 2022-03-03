@@ -5,35 +5,47 @@
 <div class="container">
     <header class="header">
         <div class="row">
-			<form method="get">
-				{{contactFilter.form}}
-		    <button class="btn btn-primary" type="submit">Search</button>
+            <form method="get">
+                <table>
+                    <tr>
+                        <td>
+                            <p>Name: </p><div class="contact-search">{{contactFilter.form.name}}</div>
+                            <p>Role: </p><div class="contact-search">{{contactFilter.form.relationship}}</div>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </header>
+
+    <section class="contacts-library">
+        <ul class="contacts-list">
+            {% for contact in contacts %}
+            {# <a href="{% url 'contact_info' contact.id %}"> #}
+                <div class="contact-section">
+                    <li class="list__item">
+                        <p class="contact-name">{{contact.name}}</p>
+                        <p class="contact-relationship">{{contact.relationship}}</p>
+                    </li>
+        
+                    <li class="list__item">
+                        <a href="">
+                            <i class="fa-solid fa-phone-flip"></i>
+                        </a>
+                        <a href="{% url 'contact_info' contact.id %}">
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </a>
+                    </li>
+                </div>
+                <hr>
+            {# </a> #}
+            {% endfor %}
+        </ul>
+    </section>
 </div>
 
-<section class="contacts-library">
-    <ul class="contacts-list">
-        {% for contact in contacts %}
-        <a href="{% url 'contact_info' contact.id %}">
-            <div class="contact-section">
-                <li class="list__item">
-                    {{contact.name}}
-                    {{contact.relationship}}
-                </li>
-    
-                <li class="list__item">
-                    <a href="">
-                        <i class="fa-solid fa-phone-flip"></i>
-                    </a>
-                    <a href="{% url 'contact_info' contact.id %}">
-                        <i class="fa-solid fa-ellipsis"></i>
-                    </a>
-                </li>
-            </div>
-        </a>
-        {% endfor %}
-    </ul>
-</section>
 
 {% endblock %}

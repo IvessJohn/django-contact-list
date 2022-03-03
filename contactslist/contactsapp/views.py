@@ -2,12 +2,29 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from django.contrib.auth.models import User, Group
+from django.contrib.auth.forms import UserCreationForm
 
 from .models import Customer, Contact
 from .forms import ContactForm
 from .filters import ContactFilter
 
 # Create your views here.
+def view_template(request):
+    context = {}
+    return render(request, "contactsapp/.html", context)
+
+def register_view(request):
+    register_form = UserCreationForm()
+
+    context = {'register_form': register_form}
+    return render(request, "contactsapp/auth_register.html", context)
+
+
+def login_view(request):
+    context = {}
+    return render(request, "contactsapp/auth_login.html", context)
+
+
 def home(request):
     """The main page's view, where the contact list is shown."""
     contacts = Contact.objects.all()

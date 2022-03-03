@@ -1,0 +1,51 @@
+body{
+    font-family: 'Nunito', sans-serif;
+    color: #fff;
+    height: 100vh;
+}
+
+.container{
+    max-width: 450px;
+    margin: 0 auto;
+    background-color: rgb(31, 36, 33);
+}
+
+.header{
+    display: flex;
+    justify-content: space-evenly;
+    background: linear-gradient(29deg, rgba(6,36,0,1) 0%, rgba(85,143,52,1) 0%, rgba(206,240,45,1) 100%);
+    padding: 2em 0;
+    align-items: center;
+}
+
+.contact-search{
+    font-size: 1.2em;
+    padding: 0.3em;
+    border-radius: 75px;
+    border: 1px solid;
+    border-color: black;
+    outline: none;
+    line-height: 0px;
+}
+
+i{
+    font-size: 1.1em;
+}
+
+.contact-name{
+    font-size: 1.3em;
+}
+
+.contact-relationship{
+    font-size: 0.7em;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+hr{
+    border: 1px solid #494a4b;
+}
