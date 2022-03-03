@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
+from django.contrib import messages
 from django.contrib.auth.models import User, Group
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 
 from .models import Customer, Contact
-from .forms import ContactForm
+from .forms import ContactForm, RegisterForm
 from .filters import ContactFilter
 
 # Create your views here.
@@ -13,17 +15,43 @@ def view_template(request):
     context = {}
     return render(request, "contactsapp/.html", context)
 
-def register_view(request):
-    register_form = UserCreationForm()
 
-    context = {'register_form': register_form}
+def register_view(request):
+    register_form: RegisterForm = RegisterForm()
+
+    if request.method == "POST":
+        register_form = RegisterForm(request.POST)
+        if register_form.is_valid():
+            user: User = register_form.save()
+            username: str = user.username
+
+            messages.info(request, f"User {username} was created successfully!")
+
+            return redirect("login")
+
+    context = {"register_form": register_form}
     return render(request, "contactsapp/auth_register.html", context)
 
 
 def login_view(request):
+    if request.method == "POST":
+        _username: str = request.POST.get("username")
+        _password: str = request.POST.get("password")
+
+        user: User = authenticate(request, username=_username, password=_password)
+
+        if user is not None:
+            login(request, user)
+            return redirect("home")
+        else:
+            messages.info(request, "Username or password is incorrect.")
+
     context = {}
     return render(request, "contactsapp/auth_login.html", context)
 
+def logout_view(request):
+    logout(request)
+    return redirect("login")
 
 def home(request):
     """The main page's view, where the contact list is shown."""

@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f7898405e9.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/contact_main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/authentication.css' %}">
 
     <script>
 
@@ -20,8 +22,38 @@
 
     <h3>Register</h3>
     <form method="POST" action="">
-        {csrf_token}
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            {{register_form.username}}
+        </div>
+        <div class="input-group mb-2">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+            </div>
+            {{register_form.email}}
+        </div>
+        <div class="input-group mb-2">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            {{register_form.password1}}
+        </div>
+        <div class="input-group mb-2">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-key"></i> Confirm password:</span>
+            </div>
+            {{register_form.password2}}
+        </div>
+
+        <input type="submit" name="Create User" value="Create User">
     </form>
+
+    {% for message in messages %}
+        <p id="message">{{message}}</p>
+    {% endfor %}
 
 </body>
 </html>
