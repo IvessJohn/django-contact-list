@@ -76,12 +76,18 @@ def about(request):
 @login_required(login_url="login")
 def home(request):
     """The main page's view, where the contact list is shown."""
-    contacts = Contact.objects.all()
+    contact_owner: Customer = Customer.objects.get(user=request.user)
+    contacts = contact_owner.contact_set.all()
 
+    contact_amount = contacts.count()
     contactFilter = ContactFilter(request.GET, queryset=contacts)
     contacts = contactFilter.qs
 
-    context = {"contacts": contacts, "contactFilter": contactFilter}
+    context = {
+        "contacts": contacts,
+        "contact_amount": contact_amount,
+        "contactFilter": contactFilter,
+    }
     return render(request, "contactsapp/home.html", context)
 
 
