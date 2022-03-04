@@ -14,22 +14,28 @@ class Customer(models.Model):
     user: models.OneToOneField = models.OneToOneField(
         User, null=True, blank=True, on_delete=models.CASCADE
     )
+    name: models.CharField = models.CharField(max_length=96, null=True)
+
+    def __str__(self) -> str:
+        if self.name == "":
+            return f"Customer {self.id}"
+        return self.name
 
 
 class Contact(models.Model):
     """A model with contact info. Every Contact is associated with only one Customer at a time."""
 
     class Relationship(models.TextChoices):
-        FAMILY = 'FAMILY', _('Family')
+        FAMILY = "FAMILY", _("Family")
         FRIENDS = "FRIENDS", _("Friends")
         RELATIVES = "RELATIVES", _("Relatives")
         COWORKERS = "COWORKERS", _("Coworkers")
         BUSINESS = "BUSINESS", _("Business")
-    
-    contact_owner: models.ForeignKey = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)
-    phone: PhoneNumberField = PhoneNumberField(
-        blank=False, null=False, unique=True
+
+    contact_owner: models.ForeignKey = models.ForeignKey(
+        Customer, null=True, on_delete=models.DO_NOTHING
     )
+    phone: PhoneNumberField = PhoneNumberField(blank=False, null=False, unique=True)
     name: models.CharField = models.CharField(max_length=96, null=False)
     email: models.CharField = models.CharField(
         max_length=96, blank=True, null=False, unique=False
