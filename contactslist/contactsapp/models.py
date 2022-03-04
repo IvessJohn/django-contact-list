@@ -26,6 +26,7 @@ class Contact(models.Model):
         COWORKERS = "COWORKERS", _("Coworkers")
         BUSINESS = "BUSINESS", _("Business")
     
+    contact_owner: models.ForeignKey = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)
     phone: PhoneNumberField = PhoneNumberField(
         blank=False, null=False, unique=True
     )

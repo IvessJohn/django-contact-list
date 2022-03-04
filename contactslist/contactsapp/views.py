@@ -18,6 +18,7 @@ def view_template(request):
     return render(request, "contactsapp/.html", context)
 
 
+# region AUTHENTICATION VIEWS
 @unauthenticated_user
 def register_view(request):
     register_form: RegisterForm = RegisterForm()
@@ -27,6 +28,8 @@ def register_view(request):
         if register_form.is_valid():
             user: User = register_form.save()
             username: str = user.username
+
+            Customer.objects.create(user=user, name=username)
 
             messages.info(request, f"User {username} was created successfully!")
 
@@ -60,6 +63,16 @@ def logout_view(request):
     return redirect("login")
 
 
+# endregion
+
+
+@login_required(login_url="login")
+def about(request):
+    """The About page's view. Just some info, nothing special."""
+    return render(request, "contactsapp/about.html")
+
+
+# region CONTACT LIST VIEWS
 @login_required(login_url="login")
 def home(request):
     """The main page's view, where the contact list is shown."""
@@ -73,17 +86,13 @@ def home(request):
 
 
 @login_required(login_url="login")
-def about(request):
-    """The About page's view. Just some info, nothing special."""
-    return render(request, "contactsapp/about.html")
-
-
-@login_required(login_url="login")
 def contact_add(request):
     """A view for adding a new contact."""
+    _user: User = request.user
+    contact_owner: Customer = Customer.objects.get(user=_user)
 
     is_adding_a_contact: bool = True
-    contact_form: ContactForm = ContactForm()
+    contact_form: ContactForm = ContactForm(initial={"contact_owner": contact_owner})
 
     if request.method == "POST":
         contact_form = ContactForm(request.POST)
@@ -119,3 +128,6 @@ def contact_edit(request, contact_id: int):
 
     context = {"contact_form": contact_form, "is_adding_a_contact": is_adding_a_contact}
     return render(request, "contactsapp/contact_edit.html", context)
+
+
+# endregion
