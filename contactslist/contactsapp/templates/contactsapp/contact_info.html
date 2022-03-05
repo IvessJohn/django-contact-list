@@ -1,4 +1,9 @@
 {% extends 'contactsapp/main.html' %}
+{% load static %}
+
+{% block loading_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/contact_info.css' %}">
+{% endblock %}
 
 {% block content %}
 
@@ -7,19 +12,19 @@
         <a href="{% url 'home' %}">
             <i class="fas fa-chevron-circle-left back-btn"></i>
         </a>
+
         <div class="hero-info">
             <h1 class="name">{{contact.name}}</h1>
-            <h3 class="relationship">{{contact.relationship}}</h1>
+            <h3 class="relationship">{{contact.relationship}}</h3>
+            <h5 class="phone-number">{{contact.phone}}</h5>
         </div>
     </header>
 
     <section class="contact-info">
 
-        <p class="phone-number">{{contact.phone}}</p>
-
         <div class="info-line">
-            <a><i class="fa-solid fa-phone-flip"></i></a>
-            <a><i class="fa-solid fa-comment-sms text"></i></a>
+            <a href="javascript:void(0)"><i class="fa-solid fa-phone-flip icon-gradient"></i></a>
+            <a href="javascript:void(0)"><i class="fa-solid fa-comment-sms text icon-gradient"></i></a>
         </div>
 
         

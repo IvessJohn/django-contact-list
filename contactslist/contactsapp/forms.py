@@ -14,7 +14,7 @@ class ContactForm(ModelForm):
     class Meta:
         model = Contact
         fields = "__all__"
-        exceptions = []
+        exceptions = ['contact_owner']
 
 
 class RegisterForm(UserCreationForm):

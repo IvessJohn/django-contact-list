@@ -1,4 +1,9 @@
 {% extends 'contactsapp/main.html' %}
+{% load static %}
+
+{% block loading_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/contact_main.css' %}">
+{% endblock %}
 
 {% block content %}
 
@@ -14,6 +19,7 @@
                         </td>
                         <td>
                             <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <a href="{% url 'contact_add' %}"><button class="btn btn-primary" type="button"><i class="fa-solid fa-user-plus"></i></button></a>
                         </td>
                     </tr>
                 </table>
@@ -24,24 +30,24 @@
     <section class="contacts-library">
         <ul class="contacts-list">
             {% for contact in contacts %}
-            {# <a href="{% url 'contact_info' contact.id %}"> #}
+            <a href="{% url 'contact_info' contact.id %}">
                 <div class="contact-section">
                     <li class="list__item">
                         <p class="contact-name">{{contact.name}}</p>
+                        {% if contact.relationship != "" %}
                         <p class="contact-relationship">{{contact.relationship}}</p>
+                        {% else %}
+                        <p class="contact-relationship-no-role">NO ROLE</p>
+                        {% endif %}
                     </li>
         
                     <li class="list__item">
-                        <a href="">
-                            <i class="fa-solid fa-phone-flip"></i>
-                        </a>
-                        <a href="{% url 'contact_info' contact.id %}">
-                            <i class="fa-solid fa-ellipsis"></i>
-                        </a>
+                        <a href=""><i class="fa-solid fa-phone-flip"></i></a>
+                        <a href="{% url 'contact_info' contact.id %}"><i class="fa-solid fa-ellipsis"></i></a>
                     </li>
                 </div>
                 <hr>
-            {# </a> #}
+            </a>
             {% endfor %}
         </ul>
     </section>
