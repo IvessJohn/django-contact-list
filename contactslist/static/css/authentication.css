@@ -51,3 +51,10 @@ body {
     box-shadow: none !important;
     outline: 0px !important;
 }
+
+#message{
+    background-color: grey;
+    color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+}
