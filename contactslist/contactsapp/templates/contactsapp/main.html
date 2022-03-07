@@ -3,16 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
     <title>Ivess's Contact List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    {% block loading_css %}
+    {# for additional template-specific CSS stylesheets #}
+    {% endblock %}
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f7898405e9.js" crossorigin="anonymous"></script>
 
-    {% block loading_css %}
-    {# put 'link rel stylesheet bla bla bla' here to load the needed css stylesheet #}
-    {% endblock %}
 </head>
 
 <body>

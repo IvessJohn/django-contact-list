@@ -4,3 +4,4 @@ contactslist/contactslist/__pycache__/settings.cpython-310.pyc
 .vscode/
 contactslist/contactsapp/templates/contactsapp/reserve_register.html
 contactslist/contactsapp/templates/contactsapp/reserve_login.html
+contactslist/contactsapp/templates/contactsapp/edit_template.html

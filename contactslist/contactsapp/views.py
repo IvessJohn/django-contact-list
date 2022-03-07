@@ -132,7 +132,11 @@ def contact_edit(request, contact_id: int):
             contact_form.save()
             return redirect("/")
 
-    context = {"contact_form": contact_form, "is_adding_a_contact": is_adding_a_contact}
+    context = {
+        "contact": contact,
+        "contact_form": contact_form,
+        "is_adding_a_contact": is_adding_a_contact,
+    }
     return render(request, "contactsapp/contact_edit.html", context)
 
 
