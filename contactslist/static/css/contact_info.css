@@ -3,19 +3,20 @@
 }
 
 body{
-	font-family: 'Inter', sans-serif;
+	font-family: 'Nunito', sans-serif;
     color: white;
 	margin: 0;
 }
 
 .container{
-	max-width: 428px;
+    max-width: 450px;
 	margin: 0 auto;
-	background-color: #313438;
+    background-color: #1f2421;
 	min-height: 100vh;
 }
 
 .hero{
+	font-family: 'Inter', sans-serif;
 	color: #fff;
     background: linear-gradient(29deg, rgba(6,36,0,1) 0%, rgba(85,143,52,1) 0%, rgba(206,240,45,1) 100%);
 	padding: 2em 0; 
@@ -59,8 +60,6 @@ body{
 	padding: 1em 2em;
 	margin-top: 2em;
 	border-radius: 20px;
-	box-shadow:  6px 6px 12px #2d2f33, 
-             -6px -6px 12px #35393d;
 }
 
 p{
@@ -82,7 +81,7 @@ p{
 
 
 .edit-contact{
-	background-color: #313438;
+	background-color: #1f2421;
 	padding: 2.5em 3.5em;
 	text-align: center;
 	color: #fff;

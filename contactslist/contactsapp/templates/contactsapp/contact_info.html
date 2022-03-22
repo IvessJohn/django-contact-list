@@ -1,11 +1,5 @@
-{% extends 'contactsapp/main.html' %}
-{% load static %}
-
-{% block loading_css %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/contact_info.css' %}">
-{% endblock %}
-
-{% block content %}
+{% extends 'contactsapp/main.html' %} {% load static %} {% block loading_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/contact_info.css' %}"> {% endblock %} {% block content %}
 
 <div class="container">
     <header class="hero">
@@ -27,14 +21,14 @@
             <a href="javascript:void(0)"><i class="fa-solid fa-comment-sms text icon-gradient"></i></a>
         </div>
 
-        
+
 
         <div class="info-line">
             <i class="fas fa-envelope icon-gradient"></i>
             <p class="email">{{contact.email}}</p>
         </div>
 
-        
+
 
         <div class="info-line">
             <i id="location" class="fas fa-map-marker-alt icon-gradient"></i>

@@ -94,24 +94,27 @@ def home(request):
 @login_required(login_url="login")
 def contact_add(request):
     """A view for adding a new contact."""
-    _user: User = request.user
-    contact_owner: Customer = Customer.objects.get(user=_user)
+    owner: Customer = request.user.customer
 
-    is_adding_a_contact: bool = True
-    contact_form: ContactForm = ContactForm(initial={"contact_owner": contact_owner})
+    contact_form: ContactForm = ContactForm(initial={"contact_owner": request.user.customer})
 
     if request.method == "POST":
         contact_form = ContactForm(request.POST)
-        if contact_form.is_valid():
-            contact_form.save()
-            return redirect("/")
 
-    context = {"contact_form": contact_form, "is_adding_a_contact": is_adding_a_contact}
+        if contact_form.is_valid():
+            new_contact = contact_form.save()
+            return redirect("contact_info", contact_id=new_contact.id)
+        else:
+            print("oh well")
+            print(messages.get_messages(request))
+
+    context = {"contact_form": contact_form, "is_adding_a_contact": True}
     return render(request, "contactsapp/contact_edit.html", context)
 
 
 @login_required(login_url="login")
 def contact_info(request, contact_id: int):
+    """A view for the contact's information page."""
     contact = Contact.objects.get(id=contact_id)
 
     context = {"contact": contact}
@@ -122,7 +125,7 @@ def contact_info(request, contact_id: int):
 def contact_edit(request, contact_id: int):
     """A view for editing an existing contact's information."""
 
-    is_adding_a_contact: bool = False
+    user = request.user
     contact: Contact = Contact.objects.get(id=contact_id)
     contact_form: ContactForm = ContactForm(instance=contact)
 
@@ -130,12 +133,13 @@ def contact_edit(request, contact_id: int):
         contact_form = ContactForm(request.POST, instance=contact)
         if contact_form.is_valid():
             contact_form.save()
+            print('succes')
             return redirect("/")
 
     context = {
         "contact": contact,
         "contact_form": contact_form,
-        "is_adding_a_contact": is_adding_a_contact,
+        "is_adding_a_contact": False,
     }
     return render(request, "contactsapp/contact_edit.html", context)
 

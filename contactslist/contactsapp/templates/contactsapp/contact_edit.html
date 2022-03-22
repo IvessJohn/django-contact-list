@@ -1,70 +1,80 @@
-{% extends 'contactsapp/main.html' %}
-{% load static %}
-
-{% block loading_css %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/contact_edit.css' %}">
-{% endblock %}
-
-{% block content %}
+{% extends 'contactsapp/main.html' %} {% load static %} {% block loading_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/contact_edit.css' %}"> {% endblock %} {% block content %}
 
 <form action="" method="POST">
     {% csrf_token %}
     <form method="POST" action="">
         <div class="container">
             <header class="hero">
+                {% if is_adding_a_contact %} {# Add a contact #}
+
                 <a href="{% url 'home' %}">
                     <i class="fas fa-chevron-circle-left back-btn"></i>
                 </a>
-        
+
+                <div class="hero-info">
+                    <h1 class="name">New Contact</h1>
+                </div>
+
+                {% else %} {# Edit a contact #}
+                <a href="{% url 'contact_info' contact.id %}">
+                    <i class="fas fa-chevron-circle-left back-btn"></i>
+                </a>
+
                 <div class="hero-info">
                     <h1 class="name">{{contact.name}}</h1>
                     <h3 class="relationship">{{contact.relationship}}</h3>
                     <h5 class="phone-number">{{contact.phone}}</h5>
                 </div>
+
+                {% endif %}
             </header>
             <section class="contact-info">
-    
+
+                {# {{contact_form.contact_owner}} #}
                 <div class="info-line">
-                    <i class="fas fa-phone icon-gradient"></i>
-                    {{contact_form.name}}
+                    <i class="fas fa-user-circle icon-gradient"></i> {{contact_form.name}}
                 </div>
-    
+
                 <div class="info-line">
-                    <i class="fas fa-user-circle icon-gradient"></i>
-                    {{contact_form.relationship}}
+                    <i class="fas fa-phone icon-gradient"></i> {{contact_form.phone}}
                 </div>
-    
-            
-    
+
+
                 <div class="info-line">
-                    <i class="fas fa-sms icon-gradient"></i>
-                    {{contact_form.phone}}
+                    <i class="fas fa-user-circle icon-gradient"></i> {{contact_form.relationship}}
                 </div>
-    
-                
-    
-                <div  class="info-line">
-                    <i class="fas fa-envelope icon-gradient"></i>
-                    {{contact_form.email}}
-                </div>
-    
-                
-    
+
+
                 <div class="info-line">
-                    <i class="fas fa-map-marker-alt icon-gradient location"></i>
-                    {{contact_form.address}}
+                    <i class="fas fa-envelope icon-gradient"></i> {{contact_form.email}}
                 </div>
+
+
+                <div class="info-line">
+                    <i class="fas fa-map-marker-alt icon-gradient location"></i> {{contact_form.address}}
+                </div>
+
             </section>
-    
+
+            {{contact_form.errors}} {% if is_adding_a_contact %}
+
             <section class="button-container">
                 <div class="update-contact">
-                    <button class="button-container">
-                        <i class="fas fa-check-circle icon-gradient"></i>
-                        <input class="btn login_btn" type="submit" value="Save">
-                    </button>
+                    <i class="fas fa-check-circle icon-gradient"></i>
+                    <input type="submit" name="Add" value="Add">
                 </div>
             </section>
-    
+
+            {% else %}
+
+            <section class="button-container">
+                <div class="update-contact">
+                    <i class="fas fa-check-circle icon-gradient"></i>
+                    <input type="submit" name="Save" value="Save">
+                </div>
+            </section>
+
             <section class="button-container">
                 <a href="delete.html">
                     <div class="update-contact">
@@ -73,6 +83,7 @@
                     </div>
                 </a>
             </section>
+            {% endif %}
         </div>
     </form>
 </form>

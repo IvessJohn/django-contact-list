@@ -8,9 +8,9 @@ body{
 }
 
 .container{
-	max-width: 428px;
+    max-width: 450px;
 	margin: 0 auto;
-	background-color: #313438;
+    background-color: #1f2421;
 	min-height: 100vh;
 }
 
@@ -21,6 +21,7 @@ a{
 
 
 .hero{
+	font-family: 'Inter', sans-serif;
 	color: white;
     background: linear-gradient(29deg, rgba(6,36,0,1) 0%, rgba(85,143,52,1) 0%, rgba(206,240,45,1) 100%);
 	padding: 2em 0; 
@@ -64,8 +65,6 @@ a{
 	padding: 1em 2em;
 	margin-top: 2em;
 	border-radius: 20px;
-	box-shadow: inset 6px 6px 12px #2d2f33, 
-            inset -6px -6px 12px #35393d;
 }
 
 p{
@@ -94,7 +93,7 @@ p{
 }
 
 .button-container{
-	background-color: #313438;
+	background-color: #1f2421;
 	padding: 2em 3.5em;
 	color: #fff;
 }
@@ -112,11 +111,12 @@ p{
 }
 
 .button{
-	 background-color: #313438;
-	 border: none;
-	 color: #fff;
-	 font-size: 1.3em;
-	 padding-left: 1.5em;
-	 outline: none;
+	background-color: #1f2421;
+	border: none;
+	color: #fff;
+	font-size: 1.3em;
+	padding-left: 1.5em;
+	outline: none;
 	cursor: pointer;
+	font-family: 'Nunito', sans-serif;
 }

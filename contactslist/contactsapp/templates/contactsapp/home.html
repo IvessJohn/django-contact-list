@@ -1,11 +1,5 @@
-{% extends 'contactsapp/main.html' %}
-{% load static %}
-
-{% block loading_css %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/contact_main.css' %}">
-{% endblock %}
-
-{% block content %}
+{% extends 'contactsapp/main.html' %} {% load static %} {% block loading_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/contact_main.css' %}"> {% endblock %} {% block content %}
 
 <div class="container">
     <header class="header">
@@ -14,8 +8,10 @@
                 <table>
                     <tr>
                         <td>
-                            <p>Name: </p><div class="contact-search">{{contactFilter.form.name}}</div>
-                            <p>Role: </p><div class="contact-search">{{contactFilter.form.relationship}}</div>
+                            <p>Name: </p>
+                            <div class="contact-search">{{contactFilter.form.name}}</div>
+                            <p>Role: </p>
+                            <div class="contact-search">{{contactFilter.form.relationship}}</div>
                         </td>
                         <td>
                             <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -24,6 +20,8 @@
                     </tr>
                 </table>
             </form>
+            <span class="hello-msg">Hello, {{request.user}}</span>
+            <span class="hello-msg"><a href="{% url 'logout' %}">Logout</a></span>
         </div>
     </header>
 
@@ -40,7 +38,7 @@
                         <p class="contact-relationship-no-role">NO ROLE</p>
                         {% endif %}
                     </li>
-        
+
                     <li class="list__item">
                         <a href=""><i class="fa-solid fa-phone-flip"></i></a>
                         <a href="{% url 'contact_info' contact.id %}"><i class="fa-solid fa-ellipsis"></i></a>
