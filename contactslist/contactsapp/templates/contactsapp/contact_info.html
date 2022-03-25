@@ -7,6 +7,7 @@
             <i class="fas fa-chevron-circle-left back-btn"></i>
         </a>
 
+        <!-- The essential contact information: name, relationship (if any), and phone number -->
         <div class="hero-info">
             <h1 class="name">{{contact.name}}</h1>
             <h3 class="relationship">{{contact.relationship}}</h3>
@@ -16,26 +17,28 @@
 
     <section class="contact-info">
 
+        <!-- Call/text buttons -->
         <div class="info-line">
             <a href="javascript:void(0)"><i class="fa-solid fa-phone-flip icon-gradient"></i></a>
             <a href="javascript:void(0)"><i class="fa-solid fa-comment-sms text icon-gradient"></i></a>
         </div>
 
 
-
+        <!-- #region Additional information -->
         <div class="info-line">
             <i class="fas fa-envelope icon-gradient"></i>
             <p class="email">{{contact.email}}</p>
         </div>
 
-
-
         <div class="info-line">
             <i id="location" class="fas fa-map-marker-alt icon-gradient"></i>
             <p class="address">{{contact.address}}</p>
         </div>
+
+        <!-- #endregion-->
     </section>
 
+    <!-- Edit contact button (redirect to contact edit page) -->
     <a href="{% url 'contact_edit' contact.id %}">
         <section class="edit-contact">
             <div class="edit-button">

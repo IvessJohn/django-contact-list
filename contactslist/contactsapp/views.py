@@ -1,3 +1,4 @@
+"""Contains the project views."""
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
@@ -13,11 +14,6 @@ from .filters import ContactFilter
 from .decorators import unauthenticated_user
 
 # Create your views here.
-def view_template(request):
-    context = {}
-    return render(request, "contactsapp/.html", context)
-
-
 # region AUTHENTICATION VIEWS
 @unauthenticated_user
 def register_view(request):
@@ -62,7 +58,6 @@ def logout_view(request):
     logout(request)
     return redirect("login")
 
-
 # endregion
 
 
@@ -96,7 +91,9 @@ def contact_add(request):
     """A view for adding a new contact."""
     owner: Customer = request.user.customer
 
-    contact_form: ContactForm = ContactForm(initial={"contact_owner": request.user.customer})
+    contact_form: ContactForm = ContactForm(
+        initial={"contact_owner": request.user.customer}
+    )
 
     if request.method == "POST":
         contact_form = ContactForm(request.POST)
@@ -133,7 +130,7 @@ def contact_edit(request, contact_id: int):
         contact_form = ContactForm(request.POST, instance=contact)
         if contact_form.is_valid():
             contact_form.save()
-            print('succes')
+            print("succes")
             return redirect("/")
 
     context = {

@@ -6,8 +6,7 @@
     <form method="POST" action="">
         <div class="container">
             <header class="hero">
-                {% if is_adding_a_contact %} {# Add a contact #}
-
+                {% if is_adding_a_contact %}
                 <a href="{% url 'home' %}">
                     <i class="fas fa-chevron-circle-left back-btn"></i>
                 </a>
@@ -16,11 +15,12 @@
                     <h1 class="name">New Contact</h1>
                 </div>
 
-                {% else %} {# Edit a contact #}
+                {% else %}
                 <a href="{% url 'contact_info' contact.id %}">
                     <i class="fas fa-chevron-circle-left back-btn"></i>
                 </a>
 
+                <!-- Show the contact with its current information -->
                 <div class="hero-info">
                     <h1 class="name">{{contact.name}}</h1>
                     <h3 class="relationship">{{contact.relationship}}</h3>
@@ -29,9 +29,9 @@
 
                 {% endif %}
             </header>
+            <!-- The area for editing contact information -->
             <section class="contact-info">
 
-                {# {{contact_form.contact_owner}} #}
                 <div class="info-line">
                     <i class="fas fa-user-circle icon-gradient"></i> {{contact_form.name}}
                 </div>
@@ -57,8 +57,13 @@
 
             </section>
 
-            {{contact_form.errors}} {% if is_adding_a_contact %}
+            <!-- #region Errors -->
+            {{contact_form.errors}}
+            <!-- #endregion -->
 
+            {% if is_adding_a_contact %}
+
+            <!-- Add contact button -->
             <section class="button-container">
                 <div class="update-contact">
                     <i class="fas fa-check-circle icon-gradient"></i>
@@ -68,6 +73,7 @@
 
             {% else %}
 
+            <!-- Save changes button -->
             <section class="button-container">
                 <div class="update-contact">
                     <i class="fas fa-check-circle icon-gradient"></i>
@@ -75,6 +81,7 @@
                 </div>
             </section>
 
+            <!-- Delete contact button -->
             <section class="button-container">
                 <a href="delete.html">
                     <div class="update-contact">

@@ -4,6 +4,7 @@
 <div class="container">
     <header class="header">
         <div class="row">
+            <!-- Contact search -->
             <form method="get">
                 <table>
                     <tr>
@@ -14,17 +15,24 @@
                             <div class="contact-search">{{contactFilter.form.relationship}}</div>
                         </td>
                         <td>
+                            <!-- Search button -->
                             <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <!-- Add contact button (redirect to contact creation page) -->
                             <a href="{% url 'contact_add' %}"><button class="btn btn-primary" type="button"><i class="fa-solid fa-user-plus"></i></button></a>
                         </td>
                     </tr>
                 </table>
             </form>
+
+            <!-- #region User-related elements -->
             <span class="hello-msg">Hello, {{request.user}}</span>
             <span class="hello-msg"><a href="{% url 'logout' %}">Logout</a></span>
+
+            <!-- #endregion -->
         </div>
     </header>
 
+    <!-- Contact list -->
     <section class="contacts-library">
         <ul class="contacts-list">
             {% for contact in contacts %}

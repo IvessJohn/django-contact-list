@@ -2,15 +2,18 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>Ivess's Contact List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <!-- #region Additional stylesheets -->
     {% block loading_css %}
-    {# for additional template-specific CSS stylesheets #}
+    <!-- ... -->
     {% endblock %}
+    <!-- #endregion -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,11 +24,8 @@
 
 <body>
 
-    {% block content %}
-
-
-
-    {% endblock %}
+    {% block content %} {% endblock %}
 
 </body>
+
 </html>

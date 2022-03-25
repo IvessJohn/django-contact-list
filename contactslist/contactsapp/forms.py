@@ -14,12 +14,13 @@ class ContactForm(ModelForm):
     class Meta:
         model = Contact
         fields = "__all__"
-        exclude = ['contact_owner']
+        exclude = ["contact_owner"]
 
 
 class RegisterForm(UserCreationForm):
     """A custom form for user creation."""
+
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ["username", "email", "password1", "password2"]
         exclude = []

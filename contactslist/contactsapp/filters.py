@@ -1,3 +1,4 @@
+"""Contains the project filters."""
 import django_filters
 from django_filters import CharFilter
 
