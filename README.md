@@ -8,9 +8,9 @@
 
 ---
 
-![Demo GIF](publicity/demo.mp4)
+![Demo GIF](publicity/demo.gif)
 
-_*You can see more demo materials in [publicity/](publicity/) directory_
+_*You can find more demo materials in [publicity/](publicity/) directory_
 
 ---
 
