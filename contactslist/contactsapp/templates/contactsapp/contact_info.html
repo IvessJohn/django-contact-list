@@ -19,8 +19,8 @@
 
         <!-- Call/text buttons -->
         <div class="info-line">
-            <a href="javascript:void(0)"><i class="fa-solid fa-phone-flip icon-gradient"></i></a>
-            <a href="javascript:void(0)"><i class="fa-solid fa-comment-sms text icon-gradient"></i></a>
+            <a href="javascript:void(0)" title="Call"><i class="fa-solid fa-phone-flip icon-gradient"></i></a>
+            <a href="javascript:void(0)" title="Text"><i class="fa-solid fa-comment-sms text icon-gradient"></i></a>
         </div>
 
 
@@ -39,7 +39,7 @@
     </section>
 
     <!-- Edit contact button (redirect to contact edit page) -->
-    <a href="{% url 'contact_edit' contact.id %}">
+    <a href="{% url 'contact_edit' contact.id %}" title="Edit Contact">
         <section class="edit-contact">
             <div class="edit-button">
                 <i class="fas fa-cog icon-gradient"></i>

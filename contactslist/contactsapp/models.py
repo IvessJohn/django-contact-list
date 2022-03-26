@@ -38,8 +38,8 @@ class Contact(models.Model):
     )
     phone: PhoneNumberField = PhoneNumberField(blank=False, null=False, unique=True)
     name: models.CharField = models.CharField(max_length=96, null=False)
-    email: models.CharField = models.CharField(
-        max_length=96, blank=True, null=False, unique=False
+    email: models.EmailField = models.EmailField(
+        max_length=96, blank=True, null=False, unique=False, help_text="Contact's email"
     )
     relationship: models.CharField = models.CharField(
         max_length=48, blank=True, choices=Relationship.choices
