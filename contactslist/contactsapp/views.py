@@ -110,7 +110,6 @@ def contact_add(request):
 
             return redirect("contact_info", contact_id=new_contact.id)
         else:
-            print("oh well")
             print(messages.get_messages(request))
 
     context = {"contact_form": contact_form, "is_adding_a_contact": True}
@@ -130,7 +129,6 @@ def contact_info(request, contact_id: int):
 def contact_edit(request, contact_id: int):
     """A view for editing an existing contact's information."""
 
-    user = request.user
     contact: Contact = Contact.objects.get(id=contact_id)
     contact_form: ContactForm = ContactForm(instance=contact)
 
@@ -138,8 +136,7 @@ def contact_edit(request, contact_id: int):
         contact_form = ContactForm(request.POST, instance=contact)
         if contact_form.is_valid():
             contact_form.save()
-            print("succes")
-            return redirect("/")
+            return redirect("contact_info", contact_id=contact.id)
 
     context = {
         "contact": contact,
