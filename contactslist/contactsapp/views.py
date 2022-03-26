@@ -58,6 +58,7 @@ def logout_view(request):
     logout(request)
     return redirect("login")
 
+
 # endregion
 
 
@@ -99,7 +100,14 @@ def contact_add(request):
         contact_form = ContactForm(request.POST)
 
         if contact_form.is_valid():
-            new_contact = contact_form.save()
+            # Create a new contact by receiving data from the form
+            new_contact: Contact = contact_form.save()
+
+            # Assign the contact's contact owner (the form excludes this field)
+            new_contact.contact_owner = owner
+
+            new_contact.save()
+
             return redirect("contact_info", contact_id=new_contact.id)
         else:
             print("oh well")
