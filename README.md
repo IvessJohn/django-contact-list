@@ -2,7 +2,7 @@
 ### A contact list app made by [Ivan "John Ivess" Shyika](https://www.youtube.com/c/JohnIvess).
 
 ## Functionality:
-- Register and log into individual accounts, each with its own list of contacts
+- Register and log into accounts, each with its own list of contacts
 - Add and remove contacts
 - Edit information of already existing contacts
 
@@ -25,4 +25,4 @@ _*You can find more demo materials in [publicity/](publicity/) directory_
 - Font Awesome v5.6.1
 - Bootstrap v4.1.3
 - jQuery v3.3.1
-- [phonenumber_field](https://github.com/stefanfoulis/django-phonenumber-field)library
+- [phonenumber_field](https://pypi.org/project/django-phonenumber-field/)

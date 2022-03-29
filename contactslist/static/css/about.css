@@ -1,0 +1,16 @@
+body {
+    color: black;
+}
+
+.submit {
+    background-color: #6BA3E8;
+}
+
+.about-panel {
+    width: 600px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 6px 2px 30px 0px rgba(0, 0, 0, 0.75);
+}

@@ -1,7 +1,37 @@
-{% extends 'contactsapp/main.html' %}
+{% extends 'contactsapp/main.html' %} {% load static %} {% block loading_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}"> {% endblock %} {% block content %}
 
-{% block content %}
+<div class="about-panel">
+    <h2>
+        <center>About</center>
+    </h2>
+    <div>
+        <p>This Contact List web application was developed by <a href="https://twitter.com/ivess_john">John Ivess</a> as a part of his project-based learning mode.</p>
 
+        <h3>Contact List links:</h3>
+        <ul>
+            <li><a href="https://ivess-contactlist.herokuapp.com//">Contact List website</a> (hosted by Heroku)</li>
+            <li><a href="https://github.com/IvessJohn/django-contact-list">Github Repository</a></li>
+        </ul>
 
+        <hr>
+
+        <h4>Tools Used:</h4>
+        <ul>
+            <li>Django</li>
+            <li>Python</li>
+            <li>HTML</li>
+        </ul>
+
+        <h4>Additional Tools and integrations:</h4>
+        <ul>
+            <li><a href="https://pypi.org/project/django-phonenumber-field/">django-phonenumber-field</a></li>
+            <li>jQuery</li>
+        </ul>
+
+        <center><a class="btn btn-sm btn-info" href="{% url 'home' %}">To Contact List</a></td>
+        </center>
+    </div>
+</div>
 
 {% endblock %}
