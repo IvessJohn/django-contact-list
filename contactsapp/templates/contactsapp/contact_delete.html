@@ -1,0 +1,45 @@
+{% extends 'contactsapp/main.html' %} {% load static %} {% block loading_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/contact_edit.css' %}"> {% endblock %} {% block content %}
+
+<div class="container">
+    <header class="hero">
+        <a href="{% url 'contact_info' contact.id %}">
+            <i class="fas fa-chevron-circle-left back-btn"></i>
+        </a>
+
+        <!-- The essential contact information: name, relationship (if any), and phone number -->
+        <div class="hero-info">
+            <h1 class="name">{{contact.name}}</h1>
+            <h3 class="relationship">{{contact.relationship}}</h3>
+            <h5 class="phone-number">{{contact.phone}}</h5>
+        </div>
+    </header>
+
+    <!-- CHOICE -->
+    <!-- Cancel -->
+    <a href="{% url 'contact_edit' contact.id %}" title="Cancel deletion">
+        <section class="button-container">
+            <a href="{% url 'contact_info' contact.id %}" title="Cancel">
+                <div class="update-contact">
+                    <i class="fa-solid fa-arrow-left icon-gradient"></i>
+                    <button class="button">Cancel</button>
+                </div>
+            </a>
+        </section>
+    </a>
+    <!-- Confirm contact deletion -->
+    <form method="POST">
+        {% csrf_token %}
+        <a href="{% url 'contact_delete' contact.id %}" title="Confirm deletion">
+            <section class="button-container">
+                <div class="update-contact" style="color: #be2323;">
+                    <i class="fas fa-trash icon-gradient"></i>
+                    <button class="button" type="submit">Confirm</button>
+                </div>
+            </section>
+        </a>
+    </form>
+
+</div>
+
+{% endblock %}

@@ -7,7 +7,7 @@
         <div class="container">
             <header class="hero">
                 {% if is_adding_a_contact %}
-                <a href="{% url 'home' %}">
+                <a href="{% url 'contact_info' contact.id %}">
                     <i class="fas fa-chevron-circle-left back-btn"></i>
                 </a>
 
@@ -83,10 +83,10 @@
 
             <!-- Delete contact button -->
             <section class="button-container">
-                <a href="delete.html">
+                <a href="{% url 'contact_delete' contact.id %}">
                     <div class="update-contact">
                         <i class="fas fa-trash icon-gradient"></i>
-                        <button class="button">Delete Contact</button>
+                        <button class="button" type="button">Delete Contact</button>
                     </div>
                 </a>
             </section>

@@ -146,4 +146,20 @@ def contact_edit(request, contact_id: int):
     return render(request, "contactsapp/contact_edit.html", context)
 
 
+@login_required(login_url="login")
+def contact_delete(request, contact_id: int):
+    """A view for editing an existing contact's information."""
+
+    contact: Contact = Contact.objects.get(id=contact_id)
+
+    if request.method == "POST":
+        contact.delete()
+        return redirect("home")
+
+    context = {
+        "contact": contact
+    }
+    return render(request, "contactsapp/contact_delete.html", context)
+
+
 # endregion
