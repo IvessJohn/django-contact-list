@@ -1,0 +1,4 @@
+Django==4.0.2
+django_filter==21.1
+django_phonenumber_field==6.1.0
+whitenoise==6.0.0
