@@ -6,16 +6,18 @@
 
 [Contact List on GitHub](https://github.com/IvessJohn/django-contact-list) (this page)
 
+## Demo
+
+[![Demo GIF](publicity/demo.gif)](https://ivess-contactlist.herokuapp.com/)
+
+_*You can find more demo materials in [publicity/](publicity/) directory_
+
+---
+
 ## Functionality:
 - Register and log into accounts, each with its own list of contacts
 - Add and remove contacts
 - Edit information of already existing contacts
-
----
-
-![Demo GIF](publicity/demo.gif)
-
-_*You can find more demo materials in [publicity/](publicity/) directory_
 
 ---
 
